@@ -1,7 +1,7 @@
 package x.glass.client.module;
 
 import x.glass.client.module.modules.client.ClickGUI;
-import x.glass.client.module.modules.combat.ElytraSwap;
+import x.glass.client.module.modules.misc.ElytraSwap;
 
 import java.util.ArrayList;
 
