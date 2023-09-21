@@ -1,4 +1,4 @@
-package x.glass.client.clickgui;
+package x.glass.client.module.clickgui;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import x.glass.client.module.Module;
