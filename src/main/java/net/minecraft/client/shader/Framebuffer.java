@@ -20,7 +20,7 @@ public class Framebuffer
     public final boolean useDepth;
     public int framebufferObject;
     private int framebufferTexture;
-    private int depthBuffer;
+    public int depthBuffer;
     public final float[] framebufferColor;
     public int framebufferFilter;
     private boolean stencilEnabled = false;
