@@ -107,8 +107,8 @@ import net.minecraft.world.GameRules;
 import net.minecraft.world.GameType;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import the.domokun.glass.events.PlayerTickEvent;
-import the.domokun.glass.events.SprintCancelEvent;
+import x.glass.client.events.PlayerTickEvent;
+import x.glass.client.events.SprintCancelEvent;
 
 public abstract class PlayerEntity extends LivingEntity
 {
@@ -207,8 +207,7 @@ public abstract class PlayerEntity extends LivingEntity
      */
     public void tick()
     {
-        PlayerTickEvent pre = new PlayerTickEvent.Pre();
-        EventManager.call(pre);
+        EventManager.call(new PlayerTickEvent.Pre());
         this.noClip = this.isSpectator();
 
         if (this.isSpectator())
@@ -302,8 +301,7 @@ public abstract class PlayerEntity extends LivingEntity
         this.updateTurtleHelmet();
         this.cooldownTracker.tick();
         this.updatePose();
-        PlayerTickEvent post = new PlayerTickEvent.Post();
-        EventManager.call(post);
+        EventManager.call(new PlayerTickEvent.Post());
     }
 
     public boolean isSecondaryUseActive()

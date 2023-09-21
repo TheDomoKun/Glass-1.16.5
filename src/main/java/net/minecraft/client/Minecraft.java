@@ -238,8 +238,8 @@ import net.minecraft.world.storage.SaveFormat;
 import net.minecraft.world.storage.ServerWorldInfo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import the.domokun.glass.Glass;
-import the.domokun.glass.events.UpdateEvent;
+import x.glass.client.Glass;
+import x.glass.client.events.UpdateEvent;
 
 public class Minecraft extends RecursiveEventLoop<Runnable> implements ISnooperInfo, IWindowEventListener
 {
@@ -378,8 +378,7 @@ public class Minecraft extends RecursiveEventLoop<Runnable> implements ISnooperI
     @Nullable
     private IProfileResult profilerResult;
     private String debugProfilerName = "root";
-
-    private Glass glass;
+    Glass glass;
 
     public Minecraft(GameConfiguration gameConfig)
     {
@@ -485,8 +484,6 @@ public class Minecraft extends RecursiveEventLoop<Runnable> implements ISnooperI
         this.mainWindow.setRenderPhase("Startup");
         RenderSystem.setupDefaultState(0, 0, this.mainWindow.getFramebufferWidth(), this.mainWindow.getFramebufferHeight());
         this.mainWindow.setRenderPhase("Post startup");
-        this.glass = new Glass();
-        this.glass.startup();
         this.blockColors = BlockColors.init();
         this.itemColors = ItemColors.init(this.blockColors);
         this.modelManager = new ModelManager(this.textureManager, this.blockColors, this.gameSettings.mipmapLevels);
@@ -548,6 +545,8 @@ public class Minecraft extends RecursiveEventLoop<Runnable> implements ISnooperI
                 }
             });
         }, false));
+        glass = new Glass();
+        glass.startup();
     }
 
     public void setDefaultMinecraftTitle()
@@ -1070,7 +1069,6 @@ public class Minecraft extends RecursiveEventLoop<Runnable> implements ISnooperI
     {
         try
         {
-            this.glass.shutdown();;
             this.modelManager.close();
             this.fontResourceMananger.close();
             this.gameRenderer.close();
@@ -1493,6 +1491,7 @@ public class Minecraft extends RecursiveEventLoop<Runnable> implements ISnooperI
      */
     public void shutdown()
     {
+        glass.shutdown();
         this.running = false;
     }
 
@@ -2413,7 +2412,7 @@ public class Minecraft extends RecursiveEventLoop<Runnable> implements ISnooperI
 
     public boolean isMultiplayerEnabled()
     {
-        return this.enableMultiplayer && this.field_244734_au.serversAllowed();
+        return this.enableMultiplayer;
     }
 
     public boolean cannotSendChatMessages(UUID playerUUID)
@@ -2430,7 +2429,7 @@ public class Minecraft extends RecursiveEventLoop<Runnable> implements ISnooperI
 
     public boolean isChatEnabled()
     {
-        return this.enableChat && this.field_244734_au.chatAllowed();
+        return this.enableChat;
     }
 
     /**

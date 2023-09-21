@@ -1,8 +1,7 @@
-package the.domokun.glass.events;
+package x.glass.client.events;
 
 import com.darkmagician6.eventapi.events.Event;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.math.vector.Vector3f;
 
 public class MotionUpdateEvent implements Event {
     Vector3d position;

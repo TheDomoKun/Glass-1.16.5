@@ -78,7 +78,7 @@ import net.optifine.util.MemoryMonitor;
 import net.optifine.util.TimedEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import the.domokun.glass.events.RenderWorldEvent;
+import x.glass.client.events.RenderWorldEvent;
 
 public class GameRenderer implements IResourceManagerReloadListener, AutoCloseable
 {

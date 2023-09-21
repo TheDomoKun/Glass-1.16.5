@@ -44,7 +44,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.Marker;
 import org.apache.logging.log4j.MarkerManager;
-import the.domokun.glass.events.PacketEvent;
+import x.glass.client.events.PacketEvent;
 
 public class NetworkManager extends SimpleChannelInboundHandler < IPacket<? >>
 {

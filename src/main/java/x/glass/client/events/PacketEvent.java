@@ -1,4 +1,4 @@
-package the.domokun.glass.events;
+package x.glass.client.events;
 
 import com.darkmagician6.eventapi.events.callables.EventCancellable;
 import net.minecraft.network.IPacket;

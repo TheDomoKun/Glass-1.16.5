@@ -1,10 +1,9 @@
-package the.domokun.glass.events;
+package x.glass.client.events;
 
 import com.darkmagician6.eventapi.events.Event;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
-public class RenderOverlayEvent implements Event {
-
+public class RenderWorldEvent implements Event {
     MatrixStack matrixStack;
     float partialTicks;
 
@@ -16,7 +15,7 @@ public class RenderOverlayEvent implements Event {
         return partialTicks;
     }
 
-    public RenderOverlayEvent(MatrixStack matrixStack, float partialTicks) {
+    public RenderWorldEvent(MatrixStack matrixStack, float partialTicks) {
         this.matrixStack = matrixStack;
         this.partialTicks = partialTicks;
     }

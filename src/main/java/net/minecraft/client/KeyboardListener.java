@@ -2,6 +2,8 @@ package net.minecraft.client;
 
 import java.util.Locale;
 import javax.annotation.Nullable;
+
+import com.darkmagician6.eventapi.EventManager;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.gui.IGuiEventListener;
 import net.minecraft.client.gui.INestedGuiEventHandler;
@@ -39,6 +41,7 @@ import net.optifine.Config;
 import net.optifine.reflect.Reflector;
 import net.optifine.shaders.Shaders;
 import net.optifine.shaders.gui.GuiShaderOptions;
+import x.glass.client.events.KeyEvent;
 
 public class KeyboardListener
 {
@@ -456,6 +459,7 @@ public class KeyboardListener
 
             if (this.mc.currentScreen == null || this.mc.currentScreen.passEvents)
             {
+                EventManager.call(new KeyEvent(key, action));
                 InputMappings.Input inputmappings$input = InputMappings.getInputByCode(key, scanCode);
 
                 if (action == 0)

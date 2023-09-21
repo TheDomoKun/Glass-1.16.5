@@ -78,7 +78,7 @@ import net.optifine.CustomColors;
 import net.optifine.CustomItems;
 import net.optifine.TextureAnimations;
 import net.optifine.reflect.Reflector;
-import the.domokun.glass.events.RenderOverlayEvent;
+import x.glass.client.events.RenderOverlayEvent;
 
 public class IngameGui extends AbstractGui
 {

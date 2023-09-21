@@ -78,7 +78,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.vector.Vector2f;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
-import the.domokun.glass.events.MotionUpdateEvent;
+import x.glass.client.events.MotionUpdateEvent;
 
 public class ClientPlayerEntity extends AbstractClientPlayerEntity
 {

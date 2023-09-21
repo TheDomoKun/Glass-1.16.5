@@ -107,7 +107,7 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.server.TicketType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import the.domokun.glass.events.PushOutOfBlocksEvent;
+import x.glass.client.events.PushOutOfBlocksEvent;
 
 public abstract class Entity implements INameable, ICommandSource
 {
