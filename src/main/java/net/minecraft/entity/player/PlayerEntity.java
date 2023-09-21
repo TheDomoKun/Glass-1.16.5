@@ -1,5 +1,6 @@
 package net.minecraft.entity.player;
 
+import com.darkmagician6.eventapi.EventManager;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
@@ -106,6 +107,8 @@ import net.minecraft.world.GameRules;
 import net.minecraft.world.GameType;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import the.domokun.glass.events.PlayerTickEvent;
+import the.domokun.glass.events.SprintCancelEvent;
 
 public abstract class PlayerEntity extends LivingEntity
 {
@@ -204,6 +207,8 @@ public abstract class PlayerEntity extends LivingEntity
      */
     public void tick()
     {
+        PlayerTickEvent pre = new PlayerTickEvent.Pre();
+        EventManager.call(pre);
         this.noClip = this.isSpectator();
 
         if (this.isSpectator())
@@ -297,6 +302,8 @@ public abstract class PlayerEntity extends LivingEntity
         this.updateTurtleHelmet();
         this.cooldownTracker.tick();
         this.updatePose();
+        PlayerTickEvent post = new PlayerTickEvent.Post();
+        EventManager.call(post);
     }
 
     public boolean isSecondaryUseActive()
@@ -1448,8 +1455,12 @@ public abstract class PlayerEntity extends LivingEntity
                                 targetEntity.addVelocity((double)(-MathHelper.sin(this.rotationYaw * ((float)Math.PI / 180F)) * (float)i * 0.5F), 0.1D, (double)(MathHelper.cos(this.rotationYaw * ((float)Math.PI / 180F)) * (float)i * 0.5F));
                             }
 
-                            this.setMotion(this.getMotion().mul(0.6D, 1.0D, 0.6D));
-                            this.setSprinting(false);
+                            SprintCancelEvent sprintCancelEvent = new SprintCancelEvent();
+                            EventManager.call(sprintCancelEvent);
+                            if(!sprintCancelEvent.isCancelled())
+                            {  this.setMotion(this.getMotion().mul(0.6D, 1.0D, 0.6D));
+                                this.setSprinting(false);
+                            }
                         }
 
                         if (flag3)

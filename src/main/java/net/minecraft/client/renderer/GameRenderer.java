@@ -1,5 +1,6 @@
 package net.minecraft.client.renderer;
 
+import com.darkmagician6.eventapi.EventManager;
 import com.google.gson.JsonSyntaxException;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GLX;
@@ -77,6 +78,7 @@ import net.optifine.util.MemoryMonitor;
 import net.optifine.util.TimedEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import the.domokun.glass.events.RenderWorldEvent;
 
 public class GameRenderer implements IResourceManagerReloadListener, AutoCloseable
 {
@@ -888,6 +890,10 @@ public class GameRenderer implements IResourceManagerReloadListener, AutoCloseab
 
     public void renderWorld(float partialTicks, long finishTimeNano, MatrixStack matrixStackIn)
     {
+
+        RenderWorldEvent renderWorldEvent = new RenderWorldEvent(matrixStackIn,partialTicks);
+        EventManager.call(renderWorldEvent);
+
         this.lightmapTexture.updateLightmap(partialTicks);
 
         if (this.mc.getRenderViewEntity() == null)

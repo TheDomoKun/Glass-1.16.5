@@ -1,5 +1,6 @@
 package net.minecraft.client.entity.player;
 
+import com.darkmagician6.eventapi.EventManager;
 import com.google.common.collect.Lists;
 import java.util.Iterator;
 import java.util.List;
@@ -77,6 +78,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.vector.Vector2f;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
+import the.domokun.glass.events.MotionUpdateEvent;
 
 public class ClientPlayerEntity extends AbstractClientPlayerEntity
 {
@@ -810,6 +812,12 @@ public class ClientPlayerEntity extends AbstractClientPlayerEntity
      */
     public void livingTick()
     {
+
+        MotionUpdateEvent pre = new MotionUpdateEvent.Pre(mc.player.getPositionVec(),mc.player.moveForward,mc.player.moveStrafing,movementInput.isMovingForward());
+
+        EventManager.call(pre);
+
+
         ++this.sprintingTicksLeft;
 
         if (this.sprintToggleTimer > 0)
@@ -1019,6 +1027,11 @@ public class ClientPlayerEntity extends AbstractClientPlayerEntity
             this.abilities.isFlying = false;
             this.sendPlayerAbilities();
         }
+        MotionUpdateEvent post = new MotionUpdateEvent.Post(mc.player.getPositionVec(),mc.player.moveForward,mc.player.moveStrafing,movementInput.isMovingForward());
+
+        EventManager.call(post);
+
+
     }
 
     private void handlePortalTeleportation()

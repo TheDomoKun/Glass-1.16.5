@@ -1,5 +1,6 @@
 package net.minecraft.client;
 
+import com.darkmagician6.eventapi.EventManager;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Queues;
 import com.google.gson.JsonElement;
@@ -237,6 +238,8 @@ import net.minecraft.world.storage.SaveFormat;
 import net.minecraft.world.storage.ServerWorldInfo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import the.domokun.glass.Glass;
+import the.domokun.glass.events.UpdateEvent;
 
 public class Minecraft extends RecursiveEventLoop<Runnable> implements ISnooperInfo, IWindowEventListener
 {
@@ -376,6 +379,8 @@ public class Minecraft extends RecursiveEventLoop<Runnable> implements ISnooperI
     private IProfileResult profilerResult;
     private String debugProfilerName = "root";
 
+    private Glass glass;
+
     public Minecraft(GameConfiguration gameConfig)
     {
         super("Client");
@@ -480,6 +485,8 @@ public class Minecraft extends RecursiveEventLoop<Runnable> implements ISnooperI
         this.mainWindow.setRenderPhase("Startup");
         RenderSystem.setupDefaultState(0, 0, this.mainWindow.getFramebufferWidth(), this.mainWindow.getFramebufferHeight());
         this.mainWindow.setRenderPhase("Post startup");
+        this.glass = new Glass();
+        this.glass.startup();
         this.blockColors = BlockColors.init();
         this.itemColors = ItemColors.init(this.blockColors);
         this.modelManager = new ModelManager(this.textureManager, this.blockColors, this.gameSettings.mipmapLevels);
@@ -1063,6 +1070,7 @@ public class Minecraft extends RecursiveEventLoop<Runnable> implements ISnooperI
     {
         try
         {
+            this.glass.shutdown();;
             this.modelManager.close();
             this.fontResourceMananger.close();
             this.gameRenderer.close();
@@ -1697,6 +1705,8 @@ public class Minecraft extends RecursiveEventLoop<Runnable> implements ISnooperI
      */
     public void runTick()
     {
+        UpdateEvent pre = new UpdateEvent.Pre();
+        EventManager.call(pre);
         if (this.rightClickDelayTimer > 0)
         {
             --this.rightClickDelayTimer;
@@ -1875,6 +1885,8 @@ public class Minecraft extends RecursiveEventLoop<Runnable> implements ISnooperI
         this.profiler.endStartSection("keyboard");
         this.keyboardListener.tick();
         this.profiler.endSection();
+        UpdateEvent post = new UpdateEvent.Post();
+        EventManager.call(post);
     }
 
     private boolean func_244600_aM()

@@ -1,5 +1,6 @@
 package net.minecraft.entity;
 
+import com.darkmagician6.eventapi.EventManager;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
@@ -106,6 +107,7 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.server.TicketType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import the.domokun.glass.events.PushOutOfBlocksEvent;
 
 public abstract class Entity implements INameable, ICommandSource
 {
@@ -2716,6 +2718,11 @@ public abstract class Entity implements INameable, ICommandSource
 
     protected void pushOutOfBlocks(double x, double y, double z)
     {
+
+        PushOutOfBlocksEvent event = new PushOutOfBlocksEvent();
+        EventManager.call(event);
+        if(event.isCancelled()) return;;
+
         BlockPos blockpos = new BlockPos(x, y, z);
         Vector3d vector3d = new Vector3d(x - (double)blockpos.getX(), y - (double)blockpos.getY(), z - (double)blockpos.getZ());
         BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();

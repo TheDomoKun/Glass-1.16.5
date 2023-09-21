@@ -1,5 +1,6 @@
 package net.minecraft.client.gui;
 
+import com.darkmagician6.eventapi.EventManager;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -77,6 +78,7 @@ import net.optifine.CustomColors;
 import net.optifine.CustomItems;
 import net.optifine.TextureAnimations;
 import net.optifine.reflect.Reflector;
+import the.domokun.glass.events.RenderOverlayEvent;
 
 public class IngameGui extends AbstractGui
 {
@@ -186,6 +188,9 @@ public class IngameGui extends AbstractGui
             RenderSystem.enableDepthTest();
             RenderSystem.defaultBlendFunc();
         }
+
+        RenderOverlayEvent renderOverlayEvent = new RenderOverlayEvent(matrixStack,partialTicks);
+        EventManager.call(renderOverlayEvent);
 
         ItemStack itemstack = this.mc.player.inventory.armorItemInSlot(3);
 

@@ -1,5 +1,6 @@
 package net.minecraft.network;
 
+import com.darkmagician6.eventapi.EventManager;
 import com.google.common.collect.Queues;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import io.netty.bootstrap.Bootstrap;
@@ -43,6 +44,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.Marker;
 import org.apache.logging.log4j.MarkerManager;
+import the.domokun.glass.events.PacketEvent;
 
 public class NetworkManager extends SimpleChannelInboundHandler < IPacket<? >>
 {
@@ -164,8 +166,17 @@ public class NetworkManager extends SimpleChannelInboundHandler < IPacket<? >>
 
     protected void channelRead0(ChannelHandlerContext p_channelRead0_1_, IPacket<?> p_channelRead0_2_) throws Exception
     {
+
+
         if (this.channel.isOpen())
         {
+
+            PacketEvent.Incoming packetEvent = new PacketEvent.Incoming(p_channelRead0_2_);
+
+            EventManager.call(packetEvent);
+
+            if(packetEvent.isCancelled()) return;
+
             try
             {
                 processPacket(p_channelRead0_2_, this.packetListener);
@@ -200,8 +211,20 @@ public class NetworkManager extends SimpleChannelInboundHandler < IPacket<? >>
 
     public void sendPacket(IPacket<?> packetIn, @Nullable GenericFutureListener <? extends Future <? super Void >> p_201058_2_)
     {
+
         if (this.isChannelOpen())
         {
+
+
+            PacketEvent.Outgoing packetEvent = new PacketEvent.Outgoing(packetIn);
+
+            EventManager.call(packetEvent);
+
+            if(packetEvent.isCancelled())
+            {
+                return;
+            }
+
             this.flushOutboundQueue();
             this.dispatchPacket(packetIn, p_201058_2_);
         }

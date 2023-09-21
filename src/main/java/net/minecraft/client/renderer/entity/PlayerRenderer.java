@@ -1,5 +1,6 @@
 package net.minecraft.client.renderer.entity;
 
+import com.darkmagician6.eventapi.EventManager;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -35,6 +36,7 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import the.domokun.glass.events.RenderNametagEvent;
 
 public class PlayerRenderer extends LivingRenderer<AbstractClientPlayerEntity, PlayerModel<AbstractClientPlayerEntity>>
 {
@@ -169,6 +171,13 @@ public class PlayerRenderer extends LivingRenderer<AbstractClientPlayerEntity, P
 
     protected void renderName(AbstractClientPlayerEntity entityIn, ITextComponent displayNameIn, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn)
     {
+
+        RenderNametagEvent renderNametagEvent = new RenderNametagEvent(entityIn,displayNameIn,matrixStackIn,bufferIn,packedLightIn);
+
+        EventManager.call(renderNametagEvent);
+
+        if(renderNametagEvent.isCancelled()) return;
+
         double d0 = this.renderManager.squareDistanceTo(entityIn);
         matrixStackIn.push();
 
