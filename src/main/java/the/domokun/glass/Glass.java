@@ -1,26 +1,16 @@
 package the.domokun.glass;
 
 import com.darkmagician6.eventapi.EventManager;
-import com.darkmagician6.eventapi.Event;
-import the.domokun.glass.events.*;
+import net.minecraft.client.Minecraft;
 
 public class Glass {
+    public static Minecraft mc = Minecraft.getInstance();
 
-    public static final String CLIENTNAME = "Glass";
-    public static final String CLIENTVERSION = "0.1a";
-
-    public void startup()
-    {
-        System.out.println("Starting "+CLIENTNAME+" "+CLIENTVERSION);
+    public void startup() {
         EventManager.register(this);
     }
 
-    public void shutdown()
-    {
-        System.out.println("Stopping "+CLIENTNAME+" "+CLIENTVERSION);
+    public void shutdown() {
         EventManager.unregister(this);
     }
-
-
-
 }
