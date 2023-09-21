@@ -1,4 +1,4 @@
-package x.glass.client.module.modules.misc;
+package x.glass.client.module.modules.combat;
 
 import net.minecraft.inventory.container.ClickType;
 import net.minecraft.item.Item;
