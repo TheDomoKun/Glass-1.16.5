@@ -6,7 +6,7 @@ import net.minecraft.client.Minecraft;
 import x.glass.client.events.KeyEvent;
 import x.glass.client.module.Module;
 import x.glass.client.module.ModuleManager;
-import x.glass.client.module.clickgui.ClickGUIScreen;
+import x.glass.client.clickgui.ClickGUIScreen;
 
 public class Glass {
     public static Minecraft mc = Minecraft.getInstance();

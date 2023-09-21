@@ -1,4 +1,4 @@
-package x.glass.client.module.clickgui;
+package x.glass.client.clickgui;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.gui.screen.Screen;
