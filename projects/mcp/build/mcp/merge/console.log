@@ -1,0 +1,5 @@
+JVM Args:    
+Run Args:    "--client", "C:\Users\rootk\OneDrive\Рабочий стол\glass\projects\mcp\build\mcp\stripClient\output.jar", "--server", "C:\Users\rootk\OneDrive\Рабочий стол\glass\projects\mcp\build\mcp\stripServer\output.jar", "--ann", "1.16.5", "--output", "C:\Users\rootk\OneDrive\Рабочий стол\glass\projects\mcp\build\mcp\merge\output.jar", "--inject", "false"
+Classpath:   C:\Users\rootk\.gradle\caches\forge_gradle\maven_downloader\net\minecraftforge\mergetool\1.1.1\mergetool-1.1.1-fatjar.jar
+Working Dir: C:\Users\rootk\OneDrive\Рабочий стол\glass\projects\mcp\build\mcp\merge
+Main Class:  net.minecraftforge.mergetool.ConsoleMerger
