@@ -4,14 +4,14 @@ import net.minecraft.inventory.container.ClickType;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import x.glass.client.module.Module;
-import x.glass.client.module.ModuleCategory;
+import x.glass.client.module.Category;
 import x.glass.client.utils.FindUtil;
 
 import static x.glass.client.Glass.mc;
 
 public class ElytraSwap extends Module {
     public ElytraSwap() {
-        super("ElytraSwap", ModuleCategory.Misc);
+        super("ElytraSwap", Category.Misc);
     }
 
     @Override

@@ -41,7 +41,7 @@ import net.optifine.Config;
 import net.optifine.reflect.Reflector;
 import net.optifine.shaders.Shaders;
 import net.optifine.shaders.gui.GuiShaderOptions;
-import x.glass.client.events.KeyEvent;
+import x.glass.client.events.KeyboardEvent;
 
 public class KeyboardListener
 {
@@ -459,7 +459,7 @@ public class KeyboardListener
 
             if (this.mc.currentScreen == null || this.mc.currentScreen.passEvents)
             {
-                EventManager.call(new KeyEvent(key, action));
+                EventManager.call(new KeyboardEvent(key, action));
                 InputMappings.Input inputmappings$input = InputMappings.getInputByCode(key, scanCode);
 
                 if (action == 0)

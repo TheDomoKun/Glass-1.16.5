@@ -1,9 +1,11 @@
 package x.glass.client.clickgui;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+import dev.sxmurxy.fonts.styled.StyledFontRenderer;
+import x.glass.client.Glass;
 import x.glass.client.module.Module;
-import x.glass.client.module.ModuleCategory;
-import x.glass.client.module.ModuleManager;
+import x.glass.client.module.Category;
+import x.glass.client.managers.ModuleManager;
 import x.glass.client.utils.RenderUtil;
 
 import java.awt.*;
@@ -11,10 +13,10 @@ import java.util.ArrayList;
 
 public class Panel {
     int x, y, width, height;
-    ModuleCategory category;
+    Category category;
     ArrayList<Button> buttons = new ArrayList<>();
 
-    public Panel(int x, int y, int width, int height, ModuleCategory category) {
+    public Panel(int x, int y, int width, int height, Category category) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -30,7 +32,7 @@ public class Panel {
 
     public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
         RenderUtil.drawRound(x, y, width, height + buttons.size() * 18, 5, Color.BLACK);
-        //  SimplifiedFontRenderer.drawShadowedCenteredXYString(matrixStack, Glass.font, category.name(), x + width / 2, y + height / 2, Color.WHITE);
+        StyledFontRenderer.drawShadowedCenteredXYString(matrixStack, Glass.font, category.name(), x + width / 2, y + height / 2, Color.WHITE);
         for (Button button : buttons) {
             button.render(matrixStack, mouseX, mouseY, partialTicks);
         }

@@ -3,7 +3,7 @@ package x.glass.client.clickgui;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.text.ITextComponent;
-import x.glass.client.module.ModuleCategory;
+import x.glass.client.module.Category;
 
 import java.util.ArrayList;
 
@@ -13,7 +13,7 @@ public class ClickGUIScreen extends Screen {
     public ClickGUIScreen() {
         super(ITextComponent.getTextComponentOrEmpty(""));
         int x = 10;
-        for (ModuleCategory category : ModuleCategory.values()) {
+        for (Category category : Category.values()) {
             panels.add(new Panel(x, 10, 120, 18, category));
             x += 10 + 120;
         }
