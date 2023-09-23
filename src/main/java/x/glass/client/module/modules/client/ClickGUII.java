@@ -1,0 +1,22 @@
+package x.glass.client.module.modules.client;
+
+import org.lwjgl.glfw.GLFW;
+import x.glass.client.clickgui.setting.settings.BooleanSetting;
+import x.glass.client.clickgui.setting.settings.FloatSetting;
+import x.glass.client.module.Category;
+import x.glass.client.module.Module;
+
+public class ClickGUII extends Module {
+    BooleanSetting booleanSetting = new BooleanSetting("sss", true);
+    FloatSetting floatSetting = new FloatSetting("sswew", 0, 100, 40);
+
+    public ClickGUII() {
+        super("ClickGUII", Category.Client, GLFW.GLFW_KEY_RIGHT_SHIFT);
+        addSettings(booleanSetting, floatSetting);
+    }
+
+    @Override
+    public void onEnable() {
+        super.onEnable();
+    }
+}

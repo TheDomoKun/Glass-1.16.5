@@ -2,6 +2,7 @@ package x.glass.client.managers;
 
 import x.glass.client.module.Module;
 import x.glass.client.module.modules.client.ClickGUI;
+import x.glass.client.module.modules.client.ClickGUII;
 import x.glass.client.module.modules.misc.ElytraSwap;
 import x.glass.client.module.modules.movement.NoClip;
 
@@ -12,6 +13,7 @@ public class ModuleManager {
 
     public void addFeatures() {
         addModule(ClickGUI.class);
+        addModule(ClickGUII.class);
         addModule(ElytraSwap.class);
 
         addModule(NoClip.class);
@@ -34,9 +36,9 @@ public class ModuleManager {
     }
 
     @SuppressWarnings("unchecked")
-    public <T extends Module> T getInstance(Class<T> klass){
-        for (Module module : modules){
-            if (module.getClass() == klass){
+    public <T extends Module> T getInstance(Class<T> klass) {
+        for (Module module : modules) {
+            if (module.getClass() == klass) {
                 return (T) module;
             }
         }
