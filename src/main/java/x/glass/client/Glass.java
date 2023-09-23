@@ -18,7 +18,7 @@ public class Glass {
     public static final String FONT_DIR = "/assets/" + "glass" + "/font/";
 
 
-    public static StyledFont font = new StyledFont("RobotoMono-Regular.ttf", 16, 0.0f, 0f, 0.5f, Lang.ENG_RU);
+    public static StyledFont font = new StyledFont("font.ttf", 17, 0.0f, 0f, 0.5f, Lang.ENG_RU);
 
     public Glass() {
         moduleManager = new ModuleManager();

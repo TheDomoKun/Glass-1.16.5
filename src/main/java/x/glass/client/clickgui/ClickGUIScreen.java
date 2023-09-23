@@ -21,17 +21,25 @@ public class ClickGUIScreen extends Screen {
 
     @Override
     public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
-        for (Panel panel : panels) {
-            panel.render(matrixStack, mouseX, mouseY, partialTicks);
-        }
+        panels.forEach(panel -> panel.render(matrixStack, mouseX, mouseY, partialTicks));
         super.render(matrixStack, mouseX, mouseY, partialTicks);
     }
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        for (Panel panel : panels) {
-            panel.mouseClicked(mouseX, mouseY, button);
-        }
+        panels.forEach(panel -> panel.mouseClicked(mouseX, mouseY, button));
         return super.mouseClicked(mouseX, mouseY, button);
+    }
+
+    @Override
+    public boolean mouseReleased(double mouseX, double mouseY, int button) {
+        panels.forEach(panel -> panel.mouseReleased(mouseX, mouseY, button));
+        return super.mouseReleased(mouseX, mouseY, button);
+    }
+
+    @Override
+    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+        panels.forEach(panel -> panel.keyPressed(keyCode, scanCode, modifiers));
+        return super.keyPressed(keyCode, scanCode, modifiers);
     }
 }

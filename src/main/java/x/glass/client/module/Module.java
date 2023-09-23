@@ -2,6 +2,10 @@ package x.glass.client.module;
 
 import com.darkmagician6.eventapi.EventManager;
 import net.minecraft.client.Minecraft;
+import x.glass.client.clickgui.setting.Setting;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Module {
     public static Minecraft mc = Minecraft.getInstance();
@@ -9,6 +13,7 @@ public class Module {
     public Category category;
     public int key;
     public boolean included;
+    public ArrayList<Setting> settings = new ArrayList<>();
 
     public Module(String name, Category category) {
         this.name = name;
@@ -37,5 +42,9 @@ public class Module {
         } else {
             onEnable();
         }
+    }
+
+    public void addSettings(Setting... settings) {
+        this.settings.addAll(Arrays.asList(settings));
     }
 }
