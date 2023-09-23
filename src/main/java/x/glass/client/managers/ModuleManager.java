@@ -3,6 +3,7 @@ package x.glass.client.managers;
 import x.glass.client.module.Module;
 import x.glass.client.module.modules.client.ClickGUI;
 import x.glass.client.module.modules.misc.ElytraSwap;
+import x.glass.client.module.modules.movement.NoClip;
 
 import java.util.ArrayList;
 
@@ -13,7 +14,7 @@ public class ModuleManager {
         addModule(ClickGUI.class);
         addModule(ElytraSwap.class);
 
-
+        addModule(NoClip.class);
     }
 
     public static void addModule(Class<?> clazz) {

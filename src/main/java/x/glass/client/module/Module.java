@@ -1,8 +1,10 @@
 package x.glass.client.module;
 
 import com.darkmagician6.eventapi.EventManager;
+import net.minecraft.client.Minecraft;
 
 public class Module {
+    public static Minecraft mc = Minecraft.getInstance();
     public String name;
     public Category category;
     public int key;

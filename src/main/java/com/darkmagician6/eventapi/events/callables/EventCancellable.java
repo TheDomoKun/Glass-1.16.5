@@ -32,4 +32,9 @@ public abstract class EventCancellable implements Event, Cancellable {
         cancelled = state;
     }
 
+    public void cancel()
+    {
+        this.setCancelled(true);
+    }
+
 }

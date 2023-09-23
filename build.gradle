@@ -72,7 +72,8 @@ task runclient(type: JavaExec) {
     description = "Runs the client"
     classpath sourceSets.main.runtimeClasspath
     if (System.getProperty("os.name").toLowerCase().contains("mac")) {
-        jvmArgs '-XstartOnFirstThread'
+        jvmArgs '-XstartOnFirstThread',
+        jvmArgs: '-Xmx2G'
     }
     args '--gameDir', '.'
     args '--version', minecraft_version
